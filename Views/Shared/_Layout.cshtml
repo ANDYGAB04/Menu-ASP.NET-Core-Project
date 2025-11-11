@@ -1,33 +1,127 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Menu</title>
+    <title>@ViewData["Title"] - Restaurant Menu</title>
     <script type="importmap"></script>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Menu.styles.css" asp-append-version="true" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        :root {
+            --primary-color: #FF6B35;
+            --secondary-color: #004E89;
+            --light-bg: #F7F7F7;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--light-bg);
+            color: #333;
+        }
+
+        .navbar {
+            background: linear-gradient(135deg, var(--secondary-color) 0%, #1e3c72 100%);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            padding: 1rem 0;
+        }
+
+        .navbar-brand {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #fff !important;
+            letter-spacing: 1px;
+        }
+
+        .navbar-brand i {
+            color: var(--primary-color);
+            margin-right: 8px;
+        }
+
+        .search-container {
+            display: flex;
+            gap: 0;
+            max-width: 350px;
+            width: 100%;
+        }
+
+        .search-container input {
+            border: 2px solid #e0e0e0;
+            border-radius: 25px 0 0 25px;
+            padding: 10px 16px;
+            flex: 1;
+            transition: border-color 0.3s ease;
+        }
+
+        .search-container input:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
+            outline: none;
+        }
+
+        .search-container button {
+            border: 2px solid #e0e0e0;
+            border-radius: 0 25px 25px 0;
+            background-color: #fff;
+            color: var(--primary-color);
+            padding: 10px 16px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border-left: none;
+        }
+
+        .search-container button:hover {
+            background-color: var(--primary-color);
+            color: #fff;
+            border-color: var(--primary-color);
+        }
+
+        footer {
+            background: linear-gradient(135deg, var(--secondary-color) 0%, #1e3c72 100%);
+            color: #fff;
+            margin-top: 4rem;
+            padding: 2rem 0;
+        }
+
+        footer a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        main {
+            min-height: calc(100vh - 200px);
+        }
+    </style>
 </head>
+
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Menu</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                    <i class="fas fa-utensils"></i>Restaurant Menu
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item" style="margin:auto">
-                             <form asp-controller="Menu" asp-action="Index" method="get">
-                                <input style="width:80%; float:left; border-top-left-radius: 20px; border:20px;background:transparent" type ="text" name="searchString" class="form-control"/>
-                                <button style="width: 20%; float: left; border: none; background: transparent; height: 40px;" type="submit" ><i class="fa fa-search"></i></button>
-                            </form>
-                        </li> 
-                    </ul>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-end">
+                    <div class="search-container ms-auto">
+                        <form asp-controller="Menu" asp-action="Index" method="get" class="d-flex w-100"
+                            style="gap:0;">
+                            <input type="text" name="searchString" class="form-control" placeholder="Search dishes..." />
+                            <button type="submit" class="btn"><i class="fa fa-search"></i></button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </nav>
@@ -38,9 +132,13 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <footer class="border-top text-center">
         <div class="container">
-            &copy; 2025 - Menu - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            <p>&copy; 2025 - Restaurant Menu App - All Rights Reserved</p>
+            <p>
+                <a href="https://github.com/ANDYGAB04" target="_blank"><i class="fab fa-github"></i> GitHub</a> |
+                <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy Policy</a>
+            </p>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
@@ -48,4 +146,5 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
+
 </html>

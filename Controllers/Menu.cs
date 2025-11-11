@@ -13,29 +13,54 @@ namespace Menu.Controllers
         {
             _context = context;
         }
+
         public async Task<IActionResult> Index(string searchString)
         {   
-            var dishes = from d in _context.Dishes
-                       select d;
-            if(!String.IsNullOrEmpty(searchString))
-            {
-                dishes = dishes.Where(s => s.Name.Contains(searchString));
-                return View(await dishes.ToListAsync());
-            }
-                return View(await dishes.ToListAsync());
+ try
+    {
+       var dishes = _context.Dishes.AsQueryable();
+                
+      if (!String.IsNullOrEmpty(searchString))
+      {
+       dishes = dishes.Where(s => s.Name.ToLower().Contains(searchString.ToLower()));
+        }
+       
+         return View(await dishes.ToListAsync());
+   }
+    catch (Exception ex)
+   {
+        // Log the error
+        return View(new List<Dish>());
+}
         }
 
-        public async Task<IActionResult> Details (int? id)
-        {
-            var dish = await _context.Dishes
-                .Include(di=>di.DishIngredients)
-                .ThenInclude(i=>i.Ingredient)
-                .FirstOrDefaultAsync(x=>x.Id==id );
-            if(dish==null)
+        public async Task<IActionResult> Details(int? id)
+    {
+            if (id == null)
             {
-                return NotFound();
-            }   
-            return View(dish);
+        return BadRequest();
+      }
+
+        try
+  {
+     var dish = await _context.Dishes
+           .AsNoTracking()
+          .Include(d => d.DishIngredients)
+    .ThenInclude(di => di.Ingredient)
+            .FirstOrDefaultAsync(x => x.Id == id);
+
+           if (dish == null)
+            {
+            return NotFound();
+      }
+
+  return View(dish);
+     }
+            catch (Exception ex)
+      {
+       // Log the error
+     return NotFound();
+            }
         }
     }
 }

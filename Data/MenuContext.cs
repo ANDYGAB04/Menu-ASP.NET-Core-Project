@@ -26,26 +26,19 @@ namespace Menu.Data
                 );
             modelBuilder.Entity<Ingridients>().HasData(
                 new Ingridients { Id = 1, Name = "Spaghetti" },
-                new Ingridients { Id = 2, Name = "Ground Beef" },
-                new Ingridients { Id = 3, Name = "Tomato Sauce" },
-                new Ingridients { Id = 4, Name = "Romaine Lettuce" },
-                new Ingridients { Id = 5, Name = "Caesar Dressing" },
-                new Ingridients { Id = 6, Name = "Croutons" }
+                new Ingridients { Id = 2, Name = "Ground Beef" }
                 );
             modelBuilder.Entity<DishIngredient>().HasData(
                 new DishIngredient { DishId = 1, IngredientId = 1 },
-                new DishIngredient { DishId = 1, IngredientId = 2 },
-                new DishIngredient { DishId = 1, IngredientId = 3 },
-                new DishIngredient { DishId = 2, IngredientId = 4 },
-                new DishIngredient { DishId = 2, IngredientId = 5 },
-                new DishIngredient { DishId = 2, IngredientId = 6 }
+                new DishIngredient { DishId = 1, IngredientId = 2 }
+               
                 );
             base.OnModelCreating(modelBuilder);
 
         }
 
         public DbSet<Dish> Dishes { get; set; }
-        public DbSet<Ingridients> Ingridients { get; set; }
+        public DbSet<Ingridients> Ingredients { get; set; }
 
         public DbSet<DishIngredient> DishIngredients { get; set; }
     }

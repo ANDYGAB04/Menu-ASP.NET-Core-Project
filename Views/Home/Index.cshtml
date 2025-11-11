@@ -1,8 +1,67 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Home";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="py-5">
+    <div class="text-center mb-5">
+        <h1 class="display-3 fw-bold mb-4">
+            <i class="fas fa-utensils" style="color: #FF6B35;"></i> Welcome to Our Restaurant
+    </h1>
+      <p class="lead text-muted mb-4">
+            Discover our delicious menu with dishes from around the world
+     </p>
+        <a href="@Url.Action("Index", "Menu")" class="btn btn-lg btn-primary" style="background-color: #FF6B35; border-color: #FF6B35;">
+            <i class="fas fa-list"></i> View Our Menu
+        </a>
+    </div>
+
+ <div class="row g-4 mt-5">
+        <div class="col-md-4">
+    <div class="card h-100 shadow-sm border-0 text-center p-4">
+        <i class="fas fa-globe fa-3x mb-3" style="color: #FF6B35;"></i>
+     <h5 class="card-title">International Cuisine</h5>
+     <p class="card-text">Explore authentic dishes from various cuisines including Italian, Asian, Mexican, and more.</p>
+            </div>
+        </div>
+   <div class="col-md-4">
+  <div class="card h-100 shadow-sm border-0 text-center p-4">
+      <i class="fas fa-leaf fa-3x mb-3" style="color: #FF6B35;"></i>
+         <h5 class="card-title">Fresh Ingredients</h5>
+    <p class="card-text">All our dishes are prepared with the finest, freshest ingredients available.</p>
+        </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card h-100 shadow-sm border-0 text-center p-4">
+             <i class="fas fa-star fa-3x mb-3" style="color: #FF6B35;"></i>
+      <h5 class="card-title">Quality Guaranteed</h5>
+        <p class="card-text">Experience exceptional taste and quality in every dish we serve.</p>
+   </div>
+   </div>
+    </div>
+
+    <div class="row mt-5 pt-5">
+        <div class="col-lg-8 mx-auto">
+            <div class="bg-light p-5 rounded-3">
+                <h3 class="mb-4">About Our Menu</h3>
+            <p class="mb-3">
+          Our carefully curated menu features a wide selection of dishes designed to satisfy every palate. 
+      From classic favorites to modern innovations, each dish is prepared by our skilled chefs using only the best ingredients.
+    </p>
+         <p>
+    <strong>Use our search feature</strong> to quickly find your favorite dishes, or browse through our complete menu to discover something new!
+ </p>
+      </div>
+ </div>
+    </div>
 </div>
+
+<style>
+    .card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+  
+  .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12) !important;
+    }
+</style>
