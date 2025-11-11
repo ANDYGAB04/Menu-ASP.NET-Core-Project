@@ -3,24 +3,46 @@
 	ViewData["Title"] = "MenuIndex";	
 }
 
-<div class="container">
-	 <div class="row">
-		 @foreach(var item in Model)
+<div class="container mt-5">
+	<h1 class="mb-5 text-center">Menu</h1>
+	<div class="row g-4">
+		@foreach(var item in Model)
 		{
-			<div class="col-6">
-				<div class="d-flex justify-context-center">
-					<h4>@item.Name</h4>
-				</div>
-				<div class="d-flex justify-context-center">
-					<img src= "@item.ImageUrl" style="width:70%"/>
-				</div>
-				<div class="d-flex justify-context-center">
-					@item.Price.ToString("N2") Dollars
-				</div>
-				<div class="d-flex justify-context-center">
-					<a class="btn btn-info" asp-action="Details" asp-route-id="@item.Id">Details</a>
+			<div class="col-lg-6 col-md-12">
+				<div class="card h-100 shadow-sm hover-shadow">
+					<!-- Image -->
+					<div style="height: 250px; overflow: hidden;">
+						<img src="@item.ImageUrl" alt="@item.Name" class="card-img-top" style="width: 100%; height: 100%; object-fit: cover;" />
+					</div>
+
+					<div class="card-body d-flex flex-column">
+						<!-- Title -->
+						<h4 class="card-title text-center mb-3">@item.Name</h4>
+
+						<!-- Price -->
+						<h5 class="text-center text-success mb-4">@item.Price.ToString("N2") Dollars</h5>
+
+						<!-- Details Button -->
+						<div class="text-center mt-auto">
+							<a class="btn btn-info btn-lg" asp-action="Details" asp-route-id="@item.Id">View Details</a>
+						</div>
+					</div>
 				</div>
 			</div>
 		}
 	</div>
 </div>
+
+<style>
+	.hover-shadow {
+		transition: box-shadow 0.3s ease-in-out;
+	}
+
+	.hover-shadow:hover {
+		box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15) !important;
+	}
+
+	.card-body {
+		padding: 1.5rem;
+	}
+</style>
